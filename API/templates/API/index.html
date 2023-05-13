@@ -13,6 +13,7 @@
     <p class="output"></p>
 
     <script>
+        // GET 
         out = document.getElementsByClassName('output')[0]
         fetch('http://127.0.0.1:8000/api/menu-items')
             .then(response => response.json())
@@ -20,6 +21,42 @@
                 console.log(data)
                 out.innerHTML = data[0]['title']
             })
+
+        // PATCH, POST, PUT
+        const payload = {
+            "title": "Ambrosia Ice cream"
+        }
+        const endpoint = 'http://127.0.0.1:8000/api/menu-items'
+        fetch(endpoint,
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+
+        // DELETE
+        const detail_endpoint = 'http://127.0.0.1:8000/api/menu-items/17'
+        fetch(detail_endpoint,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+
+
 
     </script>
 
